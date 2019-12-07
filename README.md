@@ -14,7 +14,9 @@
     
  * influxdb
  
- 
+# Client
+https://github.com/Ros522/lazy-bot-tester-client
+
 # How to Use
 ```
 docker-compose up -d
