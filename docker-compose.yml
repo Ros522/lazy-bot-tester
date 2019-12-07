@@ -1,0 +1,21 @@
+influxdb:
+  image: "influxdb:latest"
+  ports:
+    - "8086:8086"
+
+chronograf:
+  image: "chronograf"
+  ports:
+    - "8888:8888"
+  environment:
+    INFLUXDB_URL: http://influxdb:8086
+  links:
+    - influxdb
+
+collector:
+  build: .
+  links:
+    - influxdb
+  environment:
+    INFLUXDB_HOST: influxdb
+    INFLUXDB_DBNAME: lazybot

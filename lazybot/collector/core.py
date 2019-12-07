@@ -1,4 +1,5 @@
 import asyncio
+import os
 from typing import NamedTuple
 from aioinflux import *
 
@@ -20,7 +21,7 @@ class LazyBotWorker:
     _host = None
     _db = None
 
-    def __init__(self, *args, host='localhost', db='lazybot'):
+    def __init__(self, *args, host=os.getenv('INFLUXDB_HOST','localhost'), db=os.getenv('INFLUXDB_DBNAME','lazybot')):
         for _exchange in args:
             self._exchanges.append(_exchange)
         self._host = host
@@ -43,8 +44,10 @@ class LazyBotWorker:
         for exchange in self._exchanges:
             asyncio.ensure_future(self._collect(exchange))
         asyncio.get_event_loop().run_forever()
-
-
-if __name__ == "__main__":
+    
+def main():
     LazyBotWorker(BitFlyer).run()
     asyncio.get_event_loop().run_forever()
+
+if __name__ == "__main__":
+    main()
