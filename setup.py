@@ -12,8 +12,7 @@ setup(
       "asyncio",
       "numpy",
       "aioredis",
-      "aioinflux",
-      "backtestlob @ git+https://github.com/Ros522/backtestlob"
+      "aioinflux"
     ],
     entry_points={
       'console_scripts':[
