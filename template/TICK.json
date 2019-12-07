@@ -1,0 +1,460 @@
+{
+	"meta": {
+		"chronografVersion": "1.7.14",
+		"sources": {
+			"0": {
+				"name": "http://influxdb:8086",
+				"link": "/chronograf/v1/sources/0"
+			}
+		}
+	},
+	"dashboard": {
+		"id": 1,
+		"cells": [
+			{
+				"i": "de8e547e-c5b5-4733-abfb-c26040c95f31",
+				"x": 6,
+				"y": 4,
+				"w": 6,
+				"h": 4,
+				"name": "LATENCY",
+				"queries": [
+					{
+						"query": "SELECT mean(\"latency\") AS \"mean_latency\" FROM \"lazybot\".\"autogen\".\"Tick\" WHERE time > :dashboardTime: AND (\"side\"!='BUY' OR \"side\"!='SELL') GROUP BY time(:interval:), \"code\" FILL(null)",
+						"queryConfig": {
+							"database": "lazybot",
+							"measurement": "Tick",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_latency",
+									"args": [
+										{
+											"value": "latency",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {
+								"side": [
+									"BUY",
+									"SELL"
+								]
+							},
+							"groupBy": {
+								"time": "auto",
+								"tags": [
+									"code"
+								]
+							},
+							"areTagsAccepted": false,
+							"fill": "null",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "/chronograf/v1/sources/1",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "76e1f286-126f-4fff-ba1a-ebefde3bedbb",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "dd1ba4dd-4aa3-4789-a6b4-5172159e2db2",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "dec339dd-1315-42cf-bf05-25dab8d5af1e",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/1/cells/de8e547e-c5b5-4733-abfb-c26040c95f31"
+				}
+			},
+			{
+				"i": "cd06455a-52c1-4eab-8692-cff332ef73e1",
+				"x": 0,
+				"y": 4,
+				"w": 6,
+				"h": 4,
+				"name": "SIZE",
+				"queries": [
+					{
+						"query": "SELECT mean(\"size\") AS \"mean_size\" FROM \"lazybot\".\"autogen\".\"Tick\" WHERE time > :dashboardTime: GROUP BY time(:interval:), \"code\", \"side\" FILL(null)",
+						"queryConfig": {
+							"database": "lazybot",
+							"measurement": "Tick",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_size",
+									"args": [
+										{
+											"value": "size",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {},
+							"groupBy": {
+								"time": "auto",
+								"tags": [
+									"code",
+									"side"
+								]
+							},
+							"areTagsAccepted": false,
+							"fill": "null",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "/chronograf/v1/sources/1",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "76e1f286-126f-4fff-ba1a-ebefde3bedbb",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "dd1ba4dd-4aa3-4789-a6b4-5172159e2db2",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "dec339dd-1315-42cf-bf05-25dab8d5af1e",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/1/cells/cd06455a-52c1-4eab-8692-cff332ef73e1"
+				}
+			},
+			{
+				"i": "cfb33155-480d-4dde-b922-030c621f44d5",
+				"x": 0,
+				"y": 0,
+				"w": 12,
+				"h": 4,
+				"name": "PRICE",
+				"queries": [
+					{
+						"query": "SELECT mean(\"price\") AS \"mean_price\" FROM \"lazybot\".\"autogen\".\"Tick\" WHERE time > :dashboardTime: GROUP BY time(:interval:), \"code\", \"side\" FILL(null)",
+						"queryConfig": {
+							"database": "lazybot",
+							"measurement": "Tick",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_price",
+									"args": [
+										{
+											"value": "price",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {},
+							"groupBy": {
+								"time": "auto",
+								"tags": [
+									"code",
+									"side"
+								]
+							},
+							"areTagsAccepted": false,
+							"fill": "null",
+							"rawText": null,
+							"range": null,
+							"shifts": [
+								{
+									"label": "none",
+									"unit": "",
+									"quantity": ""
+								}
+							]
+						},
+						"source": "/chronograf/v1/sources/1",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "76e1f286-126f-4fff-ba1a-ebefde3bedbb",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "dd1ba4dd-4aa3-4789-a6b4-5172159e2db2",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "dec339dd-1315-42cf-bf05-25dab8d5af1e",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/1/cells/cfb33155-480d-4dde-b922-030c621f44d5"
+				}
+			}
+		],
+		"templates": [
+			{
+				"tempVar": ":EXCHANGE:",
+				"values": [
+					{
+						"value": "BITFLYERFX",
+						"type": "tagValue",
+						"selected": true
+					}
+				],
+				"id": "933681c9-f4d2-4469-b150-c5ae801c6e65",
+				"type": "tagValues",
+				"label": "",
+				"query": {
+					"influxql": "SHOW TAG VALUES ON :database: FROM :measurement: WITH KEY=:tagKey:",
+					"db": "lazybot",
+					"measurement": "Tick",
+					"tagKey": "code",
+					"fieldKey": ""
+				},
+				"links": {
+					"self": "/chronograf/v1/dashboards/1/templates/933681c9-f4d2-4469-b150-c5ae801c6e65"
+				}
+			}
+		],
+		"name": "TICK",
+		"organization": "default",
+		"links": {
+			"self": "/chronograf/v1/dashboards/1",
+			"cells": "/chronograf/v1/dashboards/1/cells",
+			"templates": "/chronograf/v1/dashboards/1/templates"
+		}
+	}
+}
