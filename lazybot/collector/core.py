@@ -1,5 +1,4 @@
 import asyncio
-import json
 import os
 import sys
 from typing import NamedTuple
@@ -24,27 +23,23 @@ class LazyBotWorker:
     _exchanges = []
     _host = None
     _db = None
-    _redis_host = None
-    _redis_port = None
+    _redis = None
 
     def __init__(self, *args,
                  host=os.getenv('INFLUXDB_HOST', 'localhost'),
                  db=os.getenv('INFLUXDB_DBNAME', 'lazybot'),
-                 redis_host=os.getenv('REDIS_HOST', 'localhost'),
-                 redis_port=os.getenv('REDIS_PORT', 6379)
+                 redis=os.getenv('REDIS', 'redis://localhost'),
                  ):
         for _exchange in args:
             self._exchanges.append(_exchange)
         self._host = host
         self._db = db
-        self._redis_host = redis_host
-        self._redis_port = redis_port
+        self._redis = redis
 
     async def _write(self, tick):
         try:
-            redis = await aioredis.create_pool((self._redis_host, self._redis_port))
-            await redis.publish(tick.code, json.dumps(tick))
-
+            redis = await aioredis.create_redis_pool(self._redis)
+            await redis.publish_json(tick.code, tick)
             async with InfluxDBClient(db=self._db, host=self._host) as db:
                 await db.write(tick)
         except Exception as e:
