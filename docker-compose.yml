@@ -3,6 +3,11 @@ influxdb:
   ports:
     - "8086:8086"
 
+redis:
+  image: "redis:latest"
+  ports:
+    - "6379:6379"
+
 chronograf:
   image: "chronograf"
   ports:
@@ -16,6 +21,8 @@ collector:
   build: .
   links:
     - influxdb
+    - redis
   environment:
     INFLUXDB_HOST: influxdb
     INFLUXDB_DBNAME: lazybot
+    REDIS: redis://redis

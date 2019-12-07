@@ -11,6 +11,7 @@ setup(
       "websockets",
       "asyncio",
       "numpy",
+      "aioredis",
       "aioinflux",
       "backtestlob @ git+https://github.com/Ros522/backtestlob"
     ],
