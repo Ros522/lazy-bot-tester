@@ -59,15 +59,16 @@ class BitFlyer:
                 }
             for item in _agged_tick.values():
                 latency = (now - item["timestamp"]).astype(np.int64) / 1000000000
-                self.queue.put_nowait(
-                    Tick(timestamp=item["timestamp"].astype('datetime64[ns]').astype('int'),
-                         code=self.tag,
-                         side=item["side"],
-                         price=item["price"],
-                         size=item["size"],
-                         latency=latency
-                         )
-                )
+                if len(item["side"]) > 0:
+                    self.queue.put_nowait(
+                        Tick(timestamp=int(item["timestamp"].astype('datetime64[ns]').astype('int')),
+                             code=self.tag,
+                             side=str(item["side"]),
+                             price=float(item["price"]),
+                             size=float(item["size"]),
+                             latency=float(latency)
+                             )
+                    )
 
     @classmethod
     def connect(cls, **kwargs):
